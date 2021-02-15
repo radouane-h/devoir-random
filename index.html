@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cliquer sur le boutton "aleatoir" pour tirer
+         deux nombre entre 0 et 100</h2><br>
+         <div class="first-form">
+            <label for="x1">A</label>
+            <input type="text" readonly="readonly" id="x1">
+            <label for="x2">B</label>
+            <input type="text" readonly="readonly" id="x2">
+            <input type="button"  value="aleatoir" class="btn" onclick="alea();">
+         </div>
+         
+
+         <h2>Votre solution</h2>
+         <form>
+             <div class="format">
+                <label for="A3">A+B</label>
+                <input type="text" id="A3"><br><br>
+                <label for="A4">A-B</label>
+                <input type="text" id="A4"><br><br>
+                <label for="A5">A*B</label>
+                <input type="text" id="A5"><br><br>
+                <label for="A6">A/B</label>
+                <input type="text" id="A6"><br><br>
+                <p id="p1"></p>
+                <input type="button" value="Verifier" class="btn" onclick="verifier();">
+             </div>
+       
+         </form>
+         <h2>La correction</h2>
+         <div class="form2">
+            <label >A+B</label>
+            <input type="text" readonly="readonly"  id="B1">
+            <label >A-B</label>
+            <input type="text" readonly="readonly"  id="B2"> 
+            <label >A*B</label>
+            <input type="text" readonly="readonly"  id="B3">
+            <label >A/B</label>
+            <input type="text" readonly="readonly"  id="B4">
+            <input type="button" value="ok" class="btn" onclick="Solution();">
+            
+         </div>
+    </div>
+    
+         
+
+         <script>
+             function generer(n)
+             {
+                Math.floor(Math.random()*n);
+             }
+             function alea()
+             {
+                var x1=document.querySelector('#x1').value=Math.floor(Math.random()*100);
+                var x2=document.querySelector('#x2').value=Math.floor(Math.random()*100);
+                         
+             }
+             function Solution()
+             {
+                     var B1=document.querySelector('#B1');
+                     var B2=document.querySelector('#B2');
+                     var B3=document.querySelector('#B3');
+                     var B4=document.querySelector('#B4');
+                     B1.value=parseFloat(x1.value) + parseFloat(x2.value);
+                     B2.value=(x1.value - x2.value);
+                     B3.value=(x1.value * x2.value);
+                     B4.value=(x1.value / x2.value);
+             }
+             function verifier()
+             {
+                 var A3=document.querySelector('#A3');
+                 var A4=document.querySelector('#A4');
+                 var A5=document.querySelector('#A5');
+                 var A6=document.querySelector('#A6');
+                 var p1=document.querySelector('#p1');
+
+                 if(A3.value == ""|| A4.value == ""| A5.value == "" || A6.value == "")
+                 {
+                     p1.innerHTML='error remplir tous les champs ';
+                     return;
+                 }
+                 var reg =/^[0-9]{1,}$/;
+                 if(reg.test(A3.value)==false||reg.test(A4.value)==false||reg.test(A5.value)==false||reg.test(A6.value)==false)
+                 {
+                     p1.innerHTML='error please Enter just numbers';
+                     return;
+                 }else
+                 {
+                     p1.innerHTML='will done';
+                     return;
+                 }
+
+                 
+                 
+
+             }
+            
+         </script>
+        </body>
+</html>
